@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>学生信息表</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><a data-toggle="modal" href="form_basic.html#classedit">{{$class->classid}}基本信息</a></h5>
+                    </div>
+                    <div class="ibox-content">
+                        <ul>
+                            <li>人数：{{$num}}</li>
+                            <li>状态：{{$class->status}}</li>
+                            <li>开班时间：{{$class->starttime}}</li>
+                            <li>毕业时间：{{$class->finishtime}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row panel">
+            <div class="col-sm-12">
+
+                <div class="ibox float-e-margins">
+                    
+                    <!-- Example Pagination -->
+
+                    <div class="example-wrap">
+                        <h2>学生基本信息</h2>
+                        <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                            <button type="button" class="btn btn-outline btn-default">
+                                <a class="glyphicon glyphicon-plus" aria-hidden="true" href="form_basic.html#modal-form" data-toggle="modal" style="color: black">新增</a>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default">
+                                <i class="glyphicon glyphicon-pencil" aria-hidden="true">修改</i>
+                            </button>
+                            <button type="button" class="btn btn-outline btn-default">
+                                <i class="glyphicon glyphicon-remove delete" aria-hidden="true">删除</i>
+                            </button>
+                        </div>
+                        <table id="exampleTableToolbar" data-toggle="table">
+
+                            <thead style="color:black">
+                                <tr>
+                                    <th data-field="check" data-checkbox="true"></th>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name">姓名</th>
+                                    <th data-field="sex" data-sortable="true">性别</th>
+                                    <th data-field="shenfenzheng">身份证</th>
+                                    <th data-field="address">家庭住址</th>
+                                    <th data-field="score" data-sortable="true">学分</th>
+                                    <th data-field="classid">所在班级</th>
+                                    <th data-field="created_at" data-sortable="true">创建时间</th>
+                                    <th data-field="updated_at" data-sortable="true">更新时间</th>
+                                    <!-- <th data-field="state">操作</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($stu as $v)
+                                <tr>
+                                    <td></td>
+                                    <td>{{$v->id}}</td>
+                                    <td>{{$v->name}}</td>
+                                    <td>{{$v->sex}}</td>
+                                    <td>{{$v->shenfenzheng}}</td>
+                                    <td>{{$v->address}}</td>
+                                    <td>{{$v->score}}</td>
+                                    <td>{{$class->classid}}</td>
+                                    <td>{{$v->created_at}}</td>
+                                    <td>{{$v->updated_at}}</td>
+                                    <!-- <td><a href="/student/show/{{$v->id}}" class="btn btn-primary btn-sm">修改信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm">学分详情</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-danger btn-sm delete" value="{{$v->id}}" onclick="del(this)">删除学生</button></td> -->
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    <!-- End Example Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-form" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">添加学生</h3><hr>
+                            <form role="form" action="/student/store" method="post"  class="form-horizontal">
+                                {!! csrf_field() !!}
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">姓名：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" placeholder="姓名" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">性别：</label>
+                                    <div class="col-sm-10">
+                                        <select name="sex" class="form-control">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">身份证：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" placeholder="身份证" name="shenfenzheng">
+                                    </div>
+                                </div>
+                                <div class="form-group form-inline">
+                                    <label class="col-sm-2 control-label">家庭住址：</label>
+                                    <div class="col-sm-10">
+                                        <select id="s_province" name="province" class="form-control"></select>&nbsp;&nbsp;
+                                        <select id="s_city" name="city"  class="form-control"></select>&nbsp;&nbsp;
+                                        <select id="s_county" name="county"  class="form-control"></select>
+                                    <script class="resources library" src="/js/area.js" type="text/javascript"></script>
+                                    
+                                    <script type="text/javascript">_init_area();</script>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" placeholder="详细地址" name="s_address">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="classid" value="{{$class->id}}">
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行添加</strong>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="classedit" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">班级信息</h3><hr>
+                            <form role="form" action="/classs/store" method="post"  class="form-horizontal">
+                                {!! csrf_field() !!}
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">状态：</label>
+                                    <div class="col-sm-10">
+                                        <select name="status" class="form-control">
+                                            <option value="正常" {{ $class->status=='正常' ? 'selected' : '' }}>正常</option>
+                                            <option value="毕业" {{ $class->status=='毕业' ? 'selected' : '' }}>毕业</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开班时间：</label>
+                                    <div class="col-sm-10">
+                                      <input type="date" class="form-control" name="starttime"  value="{{$class->starttime}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">毕业时间：</label>
+                                    <div class="col-sm-10">
+                                      <input type="date" class="form-control" name="finishtime" value="{{$class->finishtime}}">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" value="{{$class->id}}">
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/layer/layer.js"></script>
+
+    <!-- Peity -->
+    <script src="/js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="/js/content.js?v=1.0.0"></script>
+
+    <!-- Bootstrap table -->
+    <script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- iCheck -->
+    <script src="/js/plugins/iCheck/icheck.min.js"></script>
+
+    <script type="text/javascript">
+        (function() {
+            $('#exampleTableToolbar').bootstrapTable({
+              search: true,
+              showRefresh: true,
+              showToggle: true,
+              toolbar: '#exampleTableEventsToolbar',
+              showColumns: true,
+              cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+              singleSelect:true,
+              pagination: true,                   //是否显示分页（*）
+              pageSize: 10,                       //每页的记录行数（*）
+              pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+              iconSize: 'outline',
+            });
+        })();
+    </script>
+    <script>
+        $(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            //删除学生弹出框
+            // $('.delete').click(function(){
+            //     var id = $(this).val();
+            //     layer.confirm('你确定要删除吗？', {
+            //         btn: ['删除','取消'] //按钮
+            //       }, function(){
+            //         $.get("/student/destroy",{id:id},function(data,status){
+            //              layer.msg('删除成功', {icon: 1});
+            //              window.location.reload();
+            //         });
+            //       }, function(){
+            //         layer.msg('已取消',{icon: 2});
+            //       });
+            // });
+            $('.delete').click(function(){
+                var id = $('#exampleTableToolbar').bootstrapTable('getSelections')[0].id;
+                $.get("/student/destroy",{id:id},function(data,status){
+                    layer.msg('删除成功', {icon: 1});
+                    //删除表格
+                    var ids = $.map($('#exampleTableToolbar').bootstrapTable('getSelections'), function (row) {
+                        return row.id;
+                    });
+                    $('#exampleTableToolbar').bootstrapTable('remove', {
+                        field: 'id',
+                        values: ids
+                    });
+                    // location.reload();
+                });
+                ////批量删除
+                // var ob = $('#exampleTableToolbar').bootstrapTable('getSelections');
+                // var id = [];
+                // //拼装需要删除的数组
+                // for (var i=0;i<ob.length;i++){ 
+                //     id[i]=ob[i].id;
+                // }
+                // $.get("/student/destroy",{id:id},function(data,status){
+                //     // layer.msg('删除成功', {icon: 1});
+                //     location.reload();
+                // });
+            });
+        });
+        //操作删除
+        //  function del(ob){
+        //      var id = $(ob).val();
+        //      layer.confirm('你确定要删除吗？', {
+        //         btn: ['删除','取消'] 
+        //       }, function(){
+        //         $.get("/student/destroy",{id:id},function(data,status){
+        //             // layer.msg('删除成功', {icon: 1});
+        //             location.reload();
+        //         });
+        //       }, function(){
+        //         layer.msg('已取消',{icon: 2});
+        //       });
+        // }
+    </script>
+
+    <script type="text/javascript">
+        var Gid  = document.getElementById ;
+        var showArea = function(){
+            Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +    
+            Gid('s_city').value + " - 县/区" + 
+            Gid('s_county').value + "</h3>"
+        }
+        Gid('s_county').setAttribute('onchange','showArea()');
+    </script>
+    
+</body>
+
+</html>
