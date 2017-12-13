@@ -259,18 +259,24 @@
             // });
             $('.delete').click(function(){
                 var id = $('#exampleTableToolbar').bootstrapTable('getSelections')[0].id;
-                $.get("/student/destroy",{id:id},function(data,status){
-                    layer.msg('删除成功', {icon: 1});
-                    //删除表格
-                    var ids = $.map($('#exampleTableToolbar').bootstrapTable('getSelections'), function (row) {
-                        return row.id;
+                layer.confirm('你确定要删除吗？', {
+                    btn: ['删除','取消'] 
+                  }, function(){
+                    $.get("/student/destroy",{id:id},function(data,status){
+                        layer.msg('删除成功', {icon: 1});
+                        //删除表格
+                        var ids = $.map($('#exampleTableToolbar').bootstrapTable('getSelections'), function (row) {
+                            return row.id;
+                        });
+                        $('#exampleTableToolbar').bootstrapTable('remove', {
+                            field: 'id',
+                            values: ids
+                        });
                     });
-                    $('#exampleTableToolbar').bootstrapTable('remove', {
-                        field: 'id',
-                        values: ids
-                    });
-                    // location.reload();
-                });
+                  }, function(){
+                    layer.msg('已取消',{icon: 2});
+                  });
+               
                 ////批量删除
                 // var ob = $('#exampleTableToolbar').bootstrapTable('getSelections');
                 // var id = [];
