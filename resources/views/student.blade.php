@@ -51,7 +51,7 @@
                                 <a class="glyphicon glyphicon-plus" aria-hidden="true" href="form_basic.html#modal-form" data-toggle="modal" style="color: black">新增</a>
                             </button>
                             <button type="button" class="btn btn-outline btn-default">
-                                <i class="glyphicon glyphicon-pencil" aria-hidden="true">修改</i>
+                                <i class="glyphicon glyphicon-pencil edit" aria-hidden="true">修改</i>
                             </button>
                             <button type="button" class="btn btn-outline btn-default">
                                 <i class="glyphicon glyphicon-remove delete" aria-hidden="true">删除</i>
@@ -71,7 +71,7 @@
                                     <th data-field="classid">所在班级</th>
                                     <th data-field="created_at" data-sortable="true">创建时间</th>
                                     <th data-field="updated_at" data-sortable="true">更新时间</th>
-                                    <!-- <th data-field="state">操作</th> -->
+                                    <th data-field="state">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,7 +87,7 @@
                                     <td>{{$class->classid}}</td>
                                     <td>{{$v->created_at}}</td>
                                     <td>{{$v->updated_at}}</td>
-                                    <!-- <td><a href="/student/show/{{$v->id}}" class="btn btn-primary btn-sm">修改信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm">学分详情</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-danger btn-sm delete" value="{{$v->id}}" onclick="del(this)">删除学生</button></td> -->
+                                    <td><a href="/student/show/{{$v->id}}" class="btn btn-primary btn-sm">修改信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm">学分详情</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -243,20 +243,8 @@
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
-            //删除学生弹出框
-            // $('.delete').click(function(){
-            //     var id = $(this).val();
-            //     layer.confirm('你确定要删除吗？', {
-            //         btn: ['删除','取消'] //按钮
-            //       }, function(){
-            //         $.get("/student/destroy",{id:id},function(data,status){
-            //              layer.msg('删除成功', {icon: 1});
-            //              window.location.reload();
-            //         });
-            //       }, function(){
-            //         layer.msg('已取消',{icon: 2});
-            //       });
-            // });
+
+            //删除学生
             $('.delete').click(function(){
                 var id = $('#exampleTableToolbar').bootstrapTable('getSelections')[0].id;
                 layer.confirm('你确定要删除吗？', {
@@ -289,21 +277,31 @@
                 //     location.reload();
                 // });
             });
+
+            //修改学生
+            $('.edit').click(function(){
+                var ob = $('#exampleTableToolbar').bootstrapTable('getSelections')[0];
+                //alert(ob.name);
+                //页面层
+                layer.open({
+                  type: 1,
+                  title:'修改学生信息',
+                  skin: 'layui-layer-rim', //加上边框
+                  area: ['640px', '450px'],
+                  content: '<div class="modal-dialog"><div class="modal-body"><div class="row"><div class="col-sm-12"><form role="form" action="/student/update" method="post"  class="form-horizontal"><input type="hidden" name="id" value='+ob.id+'><input type="hidden" name="classid" value="{{$class->id}}"><div class="form-group"><label class="col-sm-2 control-label">姓名：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="姓名" name="name" value='+ob.name+'></div></div><div class="form-group"><label class="col-sm-2 control-label">性别：</label><div class="col-sm-10"><select name="sex" class="form-control"><option value="男">男</option><option value="女">女</option></select></div></div><div class="form-group"><label class="col-sm-2 control-label">身份证：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="身份证" name="shenfenzheng" value='+ob.shenfenzheng+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家庭住址：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="详细地址" name="address" value='+ob.address+'></div></div><div><button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong></button></div></form></div></div></div></div>'
+                });
+                // $.get('/student/show/'+id, {}, function(str){
+                //   layer.open({
+                //     type: 1,
+                //     title:'修改学生信息',
+                //     skin: 'layui-layer-rim', //加上边框
+                //     area: ['640px', '450px'],
+                //     content: str //注意，如果str是object，那么需要字符拼接。
+                //   });
+                // });
+            });
         });
-        //操作删除
-        //  function del(ob){
-        //      var id = $(ob).val();
-        //      layer.confirm('你确定要删除吗？', {
-        //         btn: ['删除','取消'] 
-        //       }, function(){
-        //         $.get("/student/destroy",{id:id},function(data,status){
-        //             // layer.msg('删除成功', {icon: 1});
-        //             location.reload();
-        //         });
-        //       }, function(){
-        //         layer.msg('已取消',{icon: 2});
-        //       });
-        // }
+        
     </script>
 
     <script type="text/javascript">

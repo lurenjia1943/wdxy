@@ -31,11 +31,12 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/student/index/{id}',['as' => 'profile', 'uses' => 'StudentController@index']);
 	//执行添加学生页面
 	Route::post('/student/store','StudentController@store');
-	//跳到学生编辑页面
-	Route::get('/student/show/{id}','StudentController@show');
+	// //跳到学生编辑页面
+	// Route::get('/student/show/{id}','StudentController@show');
+	//修改学生信息
+	Route::post('/student/update','StudentController@update');
 	//删除学生
 	Route::get('/student/destroy','StudentController@destroy');
 	//修改班级信息
 	Route::post('/classs/store','ClasssController@store');
-
 });
