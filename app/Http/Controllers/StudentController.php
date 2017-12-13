@@ -72,52 +72,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $stu = Student::where('id', $id)->first();
-        //跳转修改学生页面
-        $str = <<<EOF
-        <div class="modal-dialog">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <form role="form" action="/student/store" method="post"  class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">姓名：</label>
-                                    <div class="col-sm-10">
-                                      <input type="text" class="form-control" placeholder="姓名" name="name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">性别：</label>
-                                    <div class="col-sm-10">
-                                        <select name="sex" class="form-control">
-                                            <option value="男">男</option>
-                                            <option value="女">女</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">身份证：</label>
-                                    <div class="col-sm-10">
-                                      <input type="text" class="form-control" placeholder="身份证" name="shenfenzheng">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-10">
-                                      <input type="text" class="form-control" placeholder="详细地址" name="address">
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    </div>
-EOF;
-        return $str;
+        
     }
 
     /**

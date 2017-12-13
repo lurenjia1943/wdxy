@@ -87,7 +87,7 @@
                                     <td>{{$class->classid}}</td>
                                     <td>{{$v->created_at}}</td>
                                     <td>{{$v->updated_at}}</td>
-                                    <td><a href="/student/show/{{$v->id}}" class="btn btn-primary btn-sm">修改信息</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm">学分详情</a></td>
+                                    <td><a href="#score" class="btn btn-info btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -149,6 +149,46 @@
                                 <input type="hidden" name="classid" value="{{$class->id}}">
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行添加</strong>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="score" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">学分管理</h3><hr>
+                            <form role="form" action="/score/update" method="post"  class="form-horizontal score">
+                                <div class="form-group" >
+                                    <label class="col-sm-2 control-label">加减：</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="num" placeholder="加分输入正数,减分输入负数。">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">时间：</label>
+                                    <div class="col-sm-10">
+                                      <input type="date" class="form-control" name="time">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">原因：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" name="reason">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="classid" value="{{$class->id}}">
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行操作</strong>
                                     </button>
                                 </div>
                             </form>
@@ -281,7 +321,6 @@
             //修改学生
             $('.edit').click(function(){
                 var ob = $('#exampleTableToolbar').bootstrapTable('getSelections')[0];
-                //alert(ob.name);
                 //页面层
                 layer.open({
                   type: 1,
@@ -313,7 +352,12 @@
         }
         Gid('s_county').setAttribute('onchange','showArea()');
     </script>
-    
+    <script type="text/javascript">
+        function score(id){
+            var str = '<input type="hidden" class="form-control" name="id" value="'+id+'">';
+            $(".score").append(str);
+        }
+    </script>
 </body>
 
 </html>
