@@ -98,6 +98,7 @@
             </div>
         </div>
     </div>
+    
     <div id="modal-form" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
