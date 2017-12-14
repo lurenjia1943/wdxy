@@ -62,21 +62,21 @@
                             <thead style="color:black">
                                 <tr>
                                     <th data-field="check" data-checkbox="true"></th>
-                                    <th data-field="id">ID</th>
-                                    <th data-field="name">姓名</th>
-                                    <th data-field="sex" data-sortable="true">性别</th>
-                                    <th data-field="shenfenzheng">身份证</th>
-                                    <th data-field="address">家庭住址</th>
-                                    <th data-field="score" data-sortable="true">学分</th>
-                                    <th data-field="classid">所在班级</th>
-                                    <th data-field="created_at" data-sortable="true">创建时间</th>
-                                    <th data-field="updated_at" data-sortable="true">更新时间</th>
-                                    <th data-field="state">操作</th>
+                                    <th data-field="id" data-halign="center">ID</th>
+                                    <th data-field="name" data-halign="center">姓名</th>
+                                    <th data-field="sex" data-sortable="true" data-halign="center">性别</th>
+                                    <th data-field="shenfenzheng" data-halign="center">身份证</th>
+                                    <th data-field="address" data-halign="center">家庭住址</th>
+                                    <th data-field="score" data-sortable="true" data-halign="center">学分</th>
+                                    <th data-field="classid" data-halign="center">所在班级</th>
+                                    <th data-field="created_at" data-sortable="true" data-halign="center">创建时间</th>
+                                    <th data-field="updated_at" data-sortable="true" data-halign="center">更新时间</th>
+                                    <th data-field="state" data-halign="center">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($stu as $v)
-                                <tr>
+                                <tr class="text-center">
                                     <td></td>
                                     <td>{{$v->id}}</td>
                                     <td>{{$v->name}}</td>
@@ -87,7 +87,7 @@
                                     <td>{{$class->classid}}</td>
                                     <td>{{$v->created_at}}</td>
                                     <td>{{$v->updated_at}}</td>
-                                    <td><a href="#score" class="btn btn-info btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a></td>
+                                    <td><button class="btn btn-info btn-sm" onclick="scoremore({{$v->id}})">学分详情</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#score" class="btn btn-danger btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -176,7 +176,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">时间：</label>
                                     <div class="col-sm-10">
-                                      <input type="date" class="form-control" name="time">
+                                        <input type="text" class="form-control" placeholder="请选择日期" id="time" name="time">
                                     </div>
                                 </div>
                                 
@@ -241,7 +241,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- 全局js -->
     <script src="/js/jquery.min.js?v=2.1.4"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -259,7 +259,7 @@
     <script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
     <!-- iCheck -->
     <script src="/js/plugins/iCheck/icheck.min.js"></script>
-
+    <script src="/laydate/laydate.js"></script>
     <script type="text/javascript">
         (function() {
             $('#exampleTableToolbar').bootstrapTable({
@@ -353,10 +353,27 @@
         Gid('s_county').setAttribute('onchange','showArea()');
     </script>
     <script type="text/javascript">
+        //学分管理
         function score(id){
             var str = '<input type="hidden" class="form-control" name="id" value="'+id+'">';
             $(".score").append(str);
         }
+        //学分详情查看
+        function scoremore(id){
+            $.post('/score/show', {id:id}, function(str){
+              layer.open({
+                type: 1,
+                title:'学分详情',
+                skin: 'layui-layer-rim', //加上边框
+                area: ['640px', '450px'],
+                content: str //注意，如果str是object，那么需要字符拼接。
+              });
+            });
+        }
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#time' //指定元素
+        });
     </script>
 </body>
 

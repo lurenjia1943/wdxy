@@ -39,4 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/student/destroy','StudentController@destroy');
 	//修改学生分数
 	Route::post('/score/update','ScoreController@update');
+	//修改学生分数
+	Route::post('/score/show','ScoreController@show');
 });
