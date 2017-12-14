@@ -83,6 +83,8 @@ class StudentController extends Controller
         $Student->name = $request->name;
         $Student->sex = $request->sex;
         $Student->shenfenzheng = $request->shenfenzheng;
+        $Student->iphone = $request->iphone;
+        $Student->jphone = $request->jphone;
         $Student->address = $request->province.$request->city.$request->county.$request->s_address;
         $Student->classid = $request->classid;
         $Student->save();
@@ -138,6 +140,8 @@ class StudentController extends Controller
         $Student->sex = $request->sex;
         $Student->shenfenzheng = $request->shenfenzheng;
         $Student->address = $request->address;
+        $Student->iphone = $request->iphone;
+        $Student->jphone = $request->jphone;
         $Student->save();
         return redirect()->route('profile', ['classid' => $request->classid]);
     }

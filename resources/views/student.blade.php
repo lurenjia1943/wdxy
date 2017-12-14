@@ -66,11 +66,12 @@
                                     <th data-field="name" data-halign="center">姓名</th>
                                     <th data-field="sex" data-sortable="true" data-halign="center">性别</th>
                                     <th data-field="shenfenzheng" data-halign="center">身份证</th>
+                                    <th data-field="iphone" data-halign="center">手机</th>
+                                    <th data-field="jphone" data-halign="center">家属手机</th>
                                     <th data-field="address" data-halign="center">家庭住址</th>
                                     <th data-field="score" data-sortable="true" data-halign="center">学分</th>
                                     <th data-field="classid" data-halign="center">所在班级</th>
                                     <th data-field="created_at" data-sortable="true" data-halign="center">创建时间</th>
-                                    <th data-field="updated_at" data-sortable="true" data-halign="center">更新时间</th>
                                     <th data-field="state" data-halign="center">操作</th>
                                 </tr>
                             </thead>
@@ -82,11 +83,12 @@
                                     <td>{{$v->name}}</td>
                                     <td>{{$v->sex}}</td>
                                     <td>{{$v->shenfenzheng}}</td>
+                                    <td>{{$v->iphone}}</td>
+                                    <td>{{$v->jphone}}</td>
                                     <td>{{$v->address}}</td>
                                     <td>{{$v->score}}</td>
                                     <td>{{$class->classid}}</td>
                                     <td>{{$v->created_at}}</td>
-                                    <td>{{$v->updated_at}}</td>
                                     <td><button class="btn btn-info btn-sm" onclick="scoremore({{$v->id}})">学分详情</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#score" class="btn btn-warning btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#liuji" class="btn btn-danger btn-sm" data-toggle="modal" onclick="liuji({{$v->id}})">留级</a></td>
                                 </tr>
                             @endforeach
@@ -127,6 +129,18 @@
                                     <label class="col-sm-2 control-label">身份证：</label>
                                     <div class="col-sm-10">
                                       <input type="text" class="form-control" placeholder="身份证" name="shenfenzheng">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">手机：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" placeholder="手机" name="iphone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">家属手机：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" placeholder="例如:父亲:13888888888" name="jphone">
                                     </div>
                                 </div>
                                 <div class="form-group form-inline">
@@ -368,8 +382,8 @@
                   type: 1,
                   title:'修改学生信息',
                   skin: 'layui-layer-rim', //加上边框
-                  area: ['640px', '450px'],
-                  content: '<div class="modal-dialog"><div class="modal-body"><div class="row"><div class="col-sm-12"><form role="form" action="/student/update" method="post"  class="form-horizontal"><input type="hidden" name="id" value='+ob.id+'><input type="hidden" name="classid" value="{{$class->id}}"><div class="form-group"><label class="col-sm-2 control-label">姓名：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="姓名" name="name" value='+ob.name+'></div></div><div class="form-group"><label class="col-sm-2 control-label">性别：</label><div class="col-sm-10"><select name="sex" class="form-control"><option value="男">男</option><option value="女">女</option></select></div></div><div class="form-group"><label class="col-sm-2 control-label">身份证：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="身份证" name="shenfenzheng" value='+ob.shenfenzheng+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家庭住址：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="详细地址" name="address" value='+ob.address+'></div></div><div><button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong></button></div></form></div></div></div></div>'
+                  area: ['640px', '500px'],
+                  content: '<div class="modal-dialog"><div class="modal-body"><div class="row"><div class="col-sm-12"><form role="form" action="/student/update" method="post"  class="form-horizontal"><input type="hidden" name="id" value='+ob.id+'><input type="hidden" name="classid" value="{{$class->id}}"><div class="form-group"><label class="col-sm-2 control-label">姓名：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="姓名" name="name" value='+ob.name+'></div></div><div class="form-group"><label class="col-sm-2 control-label">性别：</label><div class="col-sm-10"><select name="sex" class="form-control"><option value="男">男</option><option value="女">女</option></select></div></div><div class="form-group"><label class="col-sm-2 control-label">身份证：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="身份证" name="shenfenzheng" value='+ob.shenfenzheng+'></div></div><div class="form-group"><label class="col-sm-2 control-label">手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="手机" name="iphone" value='+ob.iphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家属手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="例如:父亲:13888888888" name="jphone" value='+ob.jphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家庭住址：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="详细地址" name="address" value='+ob.address+'></div></div><div><button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong></button></div></form></div></div></div></div>'
                 });
                 // $.get('/student/show/'+id, {}, function(str){
                 //   layer.open({
