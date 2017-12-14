@@ -268,21 +268,21 @@
                                     <label class="col-sm-2 control-label">状态：</label>
                                     <div class="col-sm-10">
                                         <select name="status" class="form-control">
-                                            <option value="正常" {{ $class->status=='正常' ? 'selected' : '' }}>正常</option>
-                                            <option value="毕业" {{ $class->status=='毕业' ? 'selected' : '' }}>毕业</option>
+                                            <option value="0" {{ $class->status=='0' ? 'selected' : '' }}>正常</option>
+                                            <option value="1" {{ $class->status=='1' ? 'selected' : '' }}>毕业</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">开班时间：</label>
                                     <div class="col-sm-10">
-                                      <input type="date" class="form-control" name="starttime"  value="{{$class->starttime}}">
+                                      <input type="text" class="form-control" name="starttime"  value="{{$class->starttime}}" id="starttime">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">毕业时间：</label>
                                     <div class="col-sm-10">
-                                      <input type="date" class="form-control" name="finishtime" value="{{$class->finishtime}}">
+                                      <input type="text" class="form-control" name="finishtime" value="{{$class->finishtime}}" id="finishtime">
                                     </div>
                                 </div>
                                 <input type="hidden" name="id" value="{{$class->id}}">
@@ -431,13 +431,21 @@
               });
             });
         }
-        //执行一个laydate实例
+        //扣分时间
         laydate.render({
           elem: '#time' //指定元素
         });
-        //执行一个laydate实例
+        //留级时间
         laydate.render({
           elem: '#time1' //指定元素
+        });
+        //开班时间
+        laydate.render({
+          elem: '#starttime' //指定元素
+        });
+        //毕业时间
+        laydate.render({
+          elem: '#finishtime' //指定元素
         });
     </script>
 </body>
