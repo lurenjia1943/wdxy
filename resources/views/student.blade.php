@@ -87,7 +87,7 @@
                                     <td>{{$class->classid}}</td>
                                     <td>{{$v->created_at}}</td>
                                     <td>{{$v->updated_at}}</td>
-                                    <td><button class="btn btn-info btn-sm" onclick="scoremore({{$v->id}})">学分详情</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#score" class="btn btn-danger btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a></td>
+                                    <td><button class="btn btn-info btn-sm" onclick="scoremore({{$v->id}})">学分详情</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#score" class="btn btn-warning btn-sm" data-toggle="modal" onclick="score({{$v->id}})">学分管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#liuji" class="btn btn-danger btn-sm" data-toggle="modal" onclick="liuji({{$v->id}})">留级</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -179,7 +179,49 @@
                                         <input type="text" class="form-control" placeholder="请选择日期" id="time" name="time">
                                     </div>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">原因：</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" name="reason">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="classid" value="{{$class->id}}">
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行操作</strong>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="liuji" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">留级管理</h3><hr>
+                            <form role="form" action="/student/liuji" method="post"  class="form-horizontal liuji">
+                                <div class="form-group" >
+                                    <label class="col-sm-2 control-label">班级选择：</label>
+                                    <div class="col-sm-10">
+                                        <select name="moreclass" class="form-control">
+                                            @foreach ($moreclass as $v)
+                                                <option value="{{$v->id}}">{{$v->classid}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">时间：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="请选择日期" id="time1" name="time">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">原因：</label>
                                     <div class="col-sm-10">
@@ -241,7 +283,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 全局js -->
     <script src="/js/jquery.min.js?v=2.1.4"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -358,6 +400,11 @@
             var str = '<input type="hidden" class="form-control" name="id" value="'+id+'">';
             $(".score").append(str);
         }
+        //留级
+        function liuji(id){
+            var str = '<input type="hidden" class="form-control" name="id" value="'+id+'">';
+            $(".liuji").append(str);
+        }
         //学分详情查看
         function scoremore(id){
             $.post('/score/show', {id:id}, function(str){
@@ -373,6 +420,10 @@
         //执行一个laydate实例
         laydate.render({
           elem: '#time' //指定元素
+        });
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#time1' //指定元素
         });
     </script>
 </body>

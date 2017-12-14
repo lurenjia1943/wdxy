@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/student/store','StudentController@store');
 	//修改学生信息
 	Route::post('/student/update','StudentController@update');
+	//学生留级
+	Route::post('/student/liuji','StudentController@liuji');
 	//删除学生
 	Route::get('/student/destroy','StudentController@destroy');
 	//修改学生分数
