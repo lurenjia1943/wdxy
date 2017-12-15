@@ -36,13 +36,11 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                                <!-- <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
                                 </li>
                                 <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                                </li> -->
+                                <li><a href="#modal-form" data-toggle="modal" >修改密码</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="{{ route('logout') }}"
@@ -223,7 +221,45 @@
 
         </div>
     </div>
-
+    <!-- 修改密码 -->
+    <div id="modal-form" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="m-t-none m-b">修改密码</h3><hr>
+                            <form role="form" action="/student/store" method="post"  class="form-horizontal">
+                                {!! csrf_field() !!}
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">旧密码：</label>
+                                    <div class="col-sm-10">
+                                      <input type="oldpassword" class="form-control" placeholder="旧密码" name="oldpassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">新密码：</label>
+                                    <div class="col-sm-10">
+                                      <input type="password" class="form-control" placeholder="新密码" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">确认密码：</label>
+                                    <div class="col-sm-10">
+                                      <input type="password" class="form-control" placeholder="确认密码" name="password">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>确认修改</strong>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- 全局js -->
     <script src="/js/jquery.min.js?v=2.1.4"></script>
     <script src="/js/bootstrap.min.js?v=3.3.6"></script>
