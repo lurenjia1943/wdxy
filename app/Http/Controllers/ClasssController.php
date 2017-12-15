@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Classs;
+use App\User;
 class ClasssController extends Controller
 {
     /**
@@ -23,9 +24,23 @@ class ClasssController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //新增班级
+        $classs = new Classs;
+        $classs->classid = $request->classid;
+        $classs->starttime = $request->starttime;
+        $classs->finishtime = $request->finishtime;
+        $classs->save();
+        //获取刚插入的班级id
+        $newclass = $classs->id;
+        //添加班级到班主任的班级
+        $user = User::find($request->tid);
+        $class = $user->class;
+        $str = $class.$newclass."#";
+        $user->class = $str;
+        $user->save();
+        return view('classadd',['tid'=>$request->tid]);
     }
 
     /**
@@ -36,8 +51,7 @@ class ClasssController extends Controller
      */
     public function store(Request $request)
     {
-        //执行添加
-        //dd($request->all());
+        //执行更新
         $classs = classs::find($request->id);
         $classs->status = $request->status;
         $classs->starttime = $request->starttime;
@@ -54,7 +68,8 @@ class ClasssController extends Controller
      */
     public function show($id)
     {
-        //
+        //显示新增班级页面
+        return view('classadd',['tid'=>$id]);
     }
 
     /**

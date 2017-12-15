@@ -24,6 +24,7 @@ class IndexController extends Controller
         $class = trim($class,"#");
         $arr = explode("#", $class);
         $arr = Classs::find($arr);
+
         return view('index',['users' => $users,'arr'=>$arr]);
     }
 

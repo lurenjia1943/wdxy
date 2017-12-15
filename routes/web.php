@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('/', 'IndexController');
 	//修改班级信息
 	Route::post('/classs/store','ClasssController@store');
+	//新增班级信息
+	Route::post('/classs/create','ClasssController@create');
+	//添加班级
+	Route::get('/classs/show/{id}','ClasssController@show');
 	//学生信息
 	Route::get('/student/index/{id}',['as' => 'profile', 'uses' => 'StudentController@index']);
 	//执行添加学生页面
@@ -43,4 +47,5 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/score/update','ScoreController@update');
 	//修改学生分数
 	Route::post('/score/show','ScoreController@show');
+	
 });

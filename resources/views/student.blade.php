@@ -198,7 +198,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">原因：</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="reason">
+                                      <input type="text" class="form-control" name="reason" placeholder="扣分原因">
                                     </div>
                                 </div>
                                 <input type="hidden" name="classid" value="{{$class->id}}">
@@ -242,7 +242,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">原因：</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="reason">
+                                      <input type="text" class="form-control" name="reason" placeholder="留级原因">
                                     </div>
                                 </div>
                                 <input type="hidden" name="classid" value="{{$class->id}}">
