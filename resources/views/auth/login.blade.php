@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>登录</title>
+    <title>沃德学院学生系统</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
@@ -66,7 +66,7 @@
         </div>
         <div class="signup-footer">
             <div class="pull-left">
-                &copy; 2018 All Rights Reserved.
+                © 2018 2018 chenxun All Rights Reserved
             </div>
         </div>
     </div>

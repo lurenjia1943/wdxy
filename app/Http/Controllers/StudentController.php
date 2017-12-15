@@ -117,6 +117,7 @@ class StudentController extends Controller
         //记录操作历史
         $Liuji = new Liuji;
         $Liuji->sid = $request->id;
+        $Liuji->tid = Auth::id();
         $Liuji->from = $request->classid;
         $Liuji->to = $request->moreclass;
         $Liuji->reason = $request->reason;

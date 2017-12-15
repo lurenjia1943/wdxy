@@ -101,6 +101,7 @@
         </div>
     </div>
     
+    <!-- 添加学生 -->
     <div id="modal-form" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -140,7 +141,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">家属手机：</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" placeholder="例如:父亲:13888888888" name="jphone">
+                                      <input type="text" class="form-control" placeholder="父亲:13888888888" name="jphone">
                                     </div>
                                 </div>
                                 <div class="form-group form-inline">
@@ -173,6 +174,7 @@
         </div>
     </div>
 
+    <!-- 学分管理 -->
     <div id="score" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -184,7 +186,7 @@
                                 <div class="form-group" >
                                     <label class="col-sm-2 control-label">加减：</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" name="num" placeholder="加分输入正数,减分输入负数。">
+                                        <input type="number" class="form-control" name="num" placeholder="加分输入正数,减分输入负数。" max="100" min="-100">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -212,6 +214,7 @@
         </div>
     </div>
 
+    <!-- 留级管理 -->
     <div id="liuji" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -255,6 +258,7 @@
         </div>
     </div>
 
+    <!-- 班级信息 -->
     <div id="classedit" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -321,7 +325,6 @@
             $('#exampleTableToolbar').bootstrapTable({
               search: true,
               showRefresh: true,
-              showToggle: true,
               toolbar: '#exampleTableEventsToolbar',
               showColumns: true,
               cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -383,7 +386,7 @@
                   title:'修改学生信息',
                   skin: 'layui-layer-rim', //加上边框
                   area: ['640px', '500px'],
-                  content: '<div class="modal-dialog"><div class="modal-body"><div class="row"><div class="col-sm-12"><form role="form" action="/student/update" method="post"  class="form-horizontal"><input type="hidden" name="id" value='+ob.id+'><input type="hidden" name="classid" value="{{$class->id}}"><div class="form-group"><label class="col-sm-2 control-label">姓名：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="姓名" name="name" value='+ob.name+'></div></div><div class="form-group"><label class="col-sm-2 control-label">性别：</label><div class="col-sm-10"><select name="sex" class="form-control"><option value="男">男</option><option value="女">女</option></select></div></div><div class="form-group"><label class="col-sm-2 control-label">身份证：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="身份证" name="shenfenzheng" value='+ob.shenfenzheng+'></div></div><div class="form-group"><label class="col-sm-2 control-label">手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="手机" name="iphone" value='+ob.iphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家属手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="例如:父亲:13888888888" name="jphone" value='+ob.jphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家庭住址：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="详细地址" name="address" value='+ob.address+'></div></div><div><button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong></button></div></form></div></div></div></div>'
+                  content: '<div class="modal-dialog"><div class="modal-body"><div class="row"><div class="col-sm-12"><form role="form" action="/student/update" method="post"  class="form-horizontal"><input type="hidden" name="id" value='+ob.id+'><input type="hidden" name="classid" value="{{$class->id}}"><div class="form-group"><label class="col-sm-2 control-label">姓名：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="姓名" name="name" value='+ob.name+'></div></div><div class="form-group"><label class="col-sm-2 control-label">性别：</label><div class="col-sm-10"><select name="sex" class="form-control"><option value="男">男</option><option value="女">女</option></select></div></div><div class="form-group"><label class="col-sm-2 control-label">身份证：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="身份证" name="shenfenzheng" value='+ob.shenfenzheng+'></div></div><div class="form-group"><label class="col-sm-2 control-label">手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="手机" name="iphone" value='+ob.iphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家属手机：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="父亲:13888888888" name="jphone" value='+ob.jphone+'></div></div><div class="form-group"><label class="col-sm-2 control-label">家庭住址：</label><div class="col-sm-10"><input type="text" class="form-control" placeholder="详细地址" name="address" value='+ob.address+'></div></div><div><button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>执行修改</strong></button></div></form></div></div></div></div>'
                 });
                 // $.get('/student/show/'+id, {}, function(str){
                 //   layer.open({

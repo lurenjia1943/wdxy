@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Score;
 use App\Student;
 class ScoreController extends Controller
@@ -49,7 +50,7 @@ class ScoreController extends Controller
     public function show(Request $request)
     {
         //学分详情
-        $score = Score::where('sid', $request->id)->orderBy('time', 'desc')->get();
+        $score = Score::where('sid', $request->id)->orderBy('time','desc')->get();
 
         $str = <<<EOF
         <div class="ibox float-e-margins">
@@ -60,12 +61,13 @@ class ScoreController extends Controller
                                     <th>分数</th>
                                     <th>原因</th>
                                     <th>时间</th>
+                                    <th>执行老师</th>
                                 </tr>
                             </thead>
                             <tbody>
 EOF;
         foreach ($score as $k => $v) {
-            $str .= "<tr><td>{$v->num}</td><td>{$v->reason}</td><td>{$v->time}</td></tr>";
+            $str .= "<tr><td>{$v->num}</td><td>{$v->reason}</td><td>{$v->time}</td><td>{$v->tid}</td></tr>";
         }
         $str .= "</tbody></table></div></div>";
 
@@ -98,6 +100,7 @@ EOF;
         //记录操作历史
         $Score = new Score;
         $Score->sid = $request->id;
+        $Score->tid = Auth::id();
         $Score->num = $request->num;
         $Score->reason = $request->reason;
         $Score->time = $request->time;

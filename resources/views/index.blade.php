@@ -384,7 +384,7 @@
             </div>
             <div class="footer">
                 <div class="pull-right">
-                    <h4>© 陈询 All Rights Reserved </h4>
+                    <h4>© 2018 2018 chenxun All Rights Reserved </h4>
                 </div>
             </div>
         </div>
