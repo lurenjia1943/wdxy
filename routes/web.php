@@ -23,9 +23,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 	
-	Route::get('main',function(){
-		return view('main');
-	});
+	Route::get('/index/show','IndexController@show');
 	Route::resource('/', 'IndexController');
 	//修改班主任密码
 	Route::post('/index/update','IndexController@update');

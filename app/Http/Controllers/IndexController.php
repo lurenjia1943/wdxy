@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Classs;
+use App\Score;
 use Hash;
 class IndexController extends Controller
 {
@@ -26,7 +27,7 @@ class IndexController extends Controller
         $arr = explode("#", $class);
         $arr = Classs::find($arr);
 
-        return view('index',['users' => $users,'arr'=>$arr]);
+        return view('index',['users'=>$users,'arr'=>$arr]);
     }
 
     /**
@@ -37,7 +38,6 @@ class IndexController extends Controller
     public function create()
     {
         //
-        return view('main');
     }
 
     /**
@@ -58,9 +58,11 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        //获取最新动态
+        $score = Score::orderBy('time', 'desc')->take(100)->get();
+        return view('main',['score'=>$score]);
     }
 
     /**
