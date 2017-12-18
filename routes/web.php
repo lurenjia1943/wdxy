@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth']], function () {
 		return view('main');
 	});
 	Route::resource('/', 'IndexController');
+	//修改班主任密码
+	Route::post('/index/update','IndexController@update');
 	//修改班级信息
 	Route::post('/classs/store','ClasssController@store');
 	//新增班级信息

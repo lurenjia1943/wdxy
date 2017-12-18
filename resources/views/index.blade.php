@@ -11,7 +11,7 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <link rel="shortcut icon" href="favicon.ico">
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
@@ -229,31 +229,34 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h3 class="m-t-none m-b">修改密码</h3><hr>
-                            <form role="form" action="/student/store" method="post"  class="form-horizontal">
-                                {!! csrf_field() !!}
+                            <form role="form" action="/index/update" method="post"  class="form-horizontal">
+                                
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">旧密码：</label>
-                                    <div class="col-sm-10">
-                                      <input type="oldpassword" class="form-control" placeholder="旧密码" name="oldpassword">
+                                    <label class="col-sm-3 control-label">旧密码：</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control pass" placeholder="旧密码" name="oldpassword">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">新密码：</label>
-                                    <div class="col-sm-10">
-                                      <input type="password" class="form-control" placeholder="新密码" name="password">
+                                    <label class="col-sm-3 control-label">新密码：</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control newpass" placeholder="新密码" name="newpassword">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">确认密码：</label>
-                                    <div class="col-sm-10">
-                                      <input type="password" class="form-control" placeholder="确认密码" name="password">
+                                    <label class="col-sm-3 control-label">确认密码：</label>
+                                    <div class="col-sm-9">
+                                      <input type="password" class="form-control passagain" placeholder="确认密码" name="password_again" onchange="again()">
+                                      <span class="help-block">
+                                        <strong class="xianshi" style="color: red"></strong>
+                                    </span>
                                     </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>确认修改</strong>
-                                    </button>
                                 </div>
                             </form>
+                            <div>
+                                <button class="btn btn-sm btn-primary pull-right m-t-n-xs update" type="submit"><strong>确认修改</strong>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,7 +276,31 @@
 
     <!-- 第三方插件 -->
     <script src="/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".passagain").on('input',function(){
+                var newpass = $(".newpass").val();
+                var passagain = $(".passagain").val();
+                if(newpass != passagain){
+                    $(".xianshi").text("两次密码不一致！");
+                }else{
+                    $(".xianshi").text("");
+                }
+            });
 
+            //修改密码
+
+            $(".update").on('click',function(){
+                var pass = $(".pass").val();
+                var newpass = $(".newpass").val();
+                var passagain = $(".passagain").val();
+                $.post("/index/update",{pass:pass,newpass:newpass,passagain:passagain},function(result){
+                    layer.msg(result);
+                });
+            });
+            
+        }); 
+    </script>
 </body>
 
 </html>

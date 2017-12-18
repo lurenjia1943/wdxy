@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Classs;
+use Hash;
 class IndexController extends Controller
 {
     /**
@@ -48,6 +49,7 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -79,9 +81,28 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //班主任修改密码
+        $pass = $request->pass;
+        $newpass = $request->newpass;
+        $passagain = $request->passagain;
+        //两次密码一致性
+        if ($newpass == $passagain) {
+            $id = Auth::id();
+            $user = User::where('id', $id)->first();
+            //验证原密码正确
+            if (Hash::check($pass,$user->password)) {
+                //更新密码
+                $user->password = bcrypt($newpass);
+                $user->save();
+                return "修改成功";
+            }else{
+                return "原密码错误";
+            }
+        }else{
+            return "两次密码不一致";
+        }
     }
 
     /**
