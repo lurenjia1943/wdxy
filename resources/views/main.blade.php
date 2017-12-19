@@ -36,8 +36,7 @@
                         <ul class="list-group">
                             @foreach ($score as $v)
                             <li class="list-group-item">
-                                <p>因为<span style="color: blue">{{$v->sid}}</span><span style="color: red">{{$v->reason}}</span>，<span style="color: blue">{{$v->tid}}</span>老师对其学分{{$v->num}}分。</p>
-                                <small class="block text-muted"><i class="fa fa-clock-o"></i>{{$v->time}}</small>
+                                <p>因为<span style="color: blue">{{$v->sid}}</span><span style="color: red">{{$v->reason}}</span>，<span style="color: blue">{{$v->tid}}</span>老师对其学分{{$v->num}}分。<small class="pull-right"><i class="fa fa-clock-o"></i>{{$v->time}}</small></p>
                             </li>
                             @endforeach
                         </ul>
@@ -54,7 +53,7 @@
                             <div class="panel-group" id="version">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title">v0.0.9<code class="pull-right">2017.12.20</code>
+                                        <h5 class="panel-title">v0.9<code class="pull-right">2017.12.20</code>
                                             </h5>
                                     </div>
                                     <div id="v41" class="panel-collapse collapse in">
@@ -75,8 +74,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>联系信息</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p><i class="fa fa-qq"></i> QQ：<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=395696661&amp;site=qq&amp;menu=yes" target="_blank">395696661</a>
+                        </p>
+                        <p><i class="fa fa-phone"></i> 手机：<a href="javascript:;">13653592881</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            
         </div>
     </div>
 

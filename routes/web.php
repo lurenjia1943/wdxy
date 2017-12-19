@@ -22,9 +22,14 @@
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-	
+	//后台首页
+	Route::get('/', 'IndexController@index');
+	//注册功能
+	Route::get('/register','Auth\RegisterController@showRegistrationForm');
+	Route::post('/register','Auth\RegisterController@register');
+
 	Route::get('/index/show','IndexController@show');
-	Route::resource('/', 'IndexController');
+	
 	//修改班主任密码
 	Route::post('/index/update','IndexController@update');
 	//修改班级信息

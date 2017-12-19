@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>沃德学院学生系统</title>
+    <title>沃德学院运城校区管理系统</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
@@ -31,13 +31,13 @@
                         <h1></h1>
                     </div>
                     <div class="m-b"></div>
-                    <h4>欢迎来到 <strong>沃德学院学生管理系统</strong></h4>
+                    <h4>欢迎来到 <strong>沃德学院运城校区管理系统</strong></h4>
                     <ul class="m-b">
-                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
-                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
-                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
-                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
-                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 后台选用了采用最新的laravel5.5版本</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 完全响应式布局（支持电脑、平板、手机等所有主流设备）</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 提供3套不同风格的皮肤</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 使用最流行的的扁平化设计</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 采用HTML5 & CSS3</li>
                     </ul>
                     <!-- <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong> -->
                 </div>
@@ -54,6 +54,7 @@
                         </span>
                     @endif
                     <input type="password" name="password" class="form-control pword m-b" placeholder="密码" required="" />
+                    <a href="{{ route('password.request') }}">忘记密码了？</a>
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
