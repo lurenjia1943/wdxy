@@ -101,6 +101,32 @@ LOCK TABLES `migrations` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` VALUES ('395696661@qq.com','$2y$10$XbkQKADjhXxJnq16cc9jteRsTHUgtEtSBiIVUn98k/NpLC100hucu','2017-12-19 01:09:22'),('395696662@qq.com','$2y$10$Y9xG6dfawoJH/riJM.A9fuDg87Uvi/Y0aM6v0B5FFxhASeqd/tOZi','2017-12-19 01:07:16');
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `score`
 --
 
@@ -182,7 +208,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +217,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'路人甲','395696661@qq.com','$2y$10$s6maV4flYahaHSFtCTC.ouUyALt6qq8fVL674NpE7u7Xx1r8rw.OS','1#13#14#','sFvR5eNdH1SJkvBTKnAty7PJyHD1Q1xUKbQIuoaxDKYqkyMe1hotpW5dnDOz','2017-11-23 03:30:10','2017-12-18 08:51:05'),(2,'路人乙','395696661@qq.com','$2y$10$Z9hElMWBnyOEhHpEg1fTUOBRwn/atqZzkqnngv/mW/TJKR/YaghU2','5#15#','fvq9A5Dh03REOKJHx8votm4nazUdy0rVg9rhstoQ1wKjEh7rR00usB91ngUY','2017-11-23 03:30:10','2017-12-18 03:01:16');
+INSERT INTO `users` VALUES (1,'路人甲','395696661@qq.com','$2y$10$eZo355MnE29aZSCtNzdaD.5oTkVQsRHxHOttaJrT7iOxgPnOA0yM6','1#13#14#','QxFfHMp37hRUT6QBtDRZM0uf8LcKNTGdhgUUqRmcBCTh7L9HUvngkXR9x9dI','2017-11-23 03:30:10','2017-12-19 01:39:01'),(2,'路人乙','395696662@qq.com','$2y$10$Z9hElMWBnyOEhHpEg1fTUOBRwn/atqZzkqnngv/mW/TJKR/YaghU2','5#15#','fvq9A5Dh03REOKJHx8votm4nazUdy0rVg9rhstoQ1wKjEh7rR00usB91ngUY','2017-11-23 03:30:10','2017-12-18 03:01:16'),(3,'路人甲','395696663@qq.com','$2y$10$gv.ehUXdpGrET7Con7fpiu6If.OAtos2vJ0YQoIaPScHgYHEqThMS',NULL,'AOWQIMZsqqNZGI7ZyJZ4FVHselidmLQnymh1fUpcj8VYyi92ANiuVDZz2D7v','2017-12-19 00:55:07','2017-12-19 00:55:07');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-18 18:10:02
+-- Dump completed on 2017-12-19  9:42:29
