@@ -16,4 +16,14 @@ class Liuji extends Model
 		$user = DB::table('users')->where('id', $value)->first();
 		return $user->name;
 	}
+	public function getfromAttribute($value)
+	{
+		$user = DB::table('class')->where('id', $value)->first();
+		return $user->classid;
+	}
+    public function gettoAttribute($value)
+	{
+		$user = DB::table('class')->where('id', $value)->first();
+		return $user->classid;
+	}
 }
