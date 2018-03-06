@@ -44,8 +44,8 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="{{ route('logout') }}"
-                                  onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">安全退出</a>
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -70,48 +70,7 @@
                     <li>
                         <a class="J_menuItem" href="/classs/show/{{ Auth::user()->id }}"><i class="fa fa-plus"></i> <span class="nav-label">新增班级</span></a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa fa-line-chart"></i>
-                            <span class="nav-label">学生成绩</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            @foreach ($arr as $v)
-                            <li>
-                                <a class="J_menuItem" href="/grade/grade/{{$v->id}}">{{$v->classid}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa fa-calendar"></i>
-                            <span class="nav-label">学员出勤</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            @foreach ($arr as $v)
-                            <li>
-                                <a class="J_menuItem" href="/student/qin/{{$v->id}}">{{$v->classid}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <i class="fa fa-calendar-minus-o"></i>
-                            <span class="nav-label">学生考勤</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            @foreach ($arr as $v)
-                            <li>
-                                <a class="J_menuItem" href="/commuting/index/{{$v->id}}">{{$v->classid}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
+
                 </ul>
             </div>
         </nav>

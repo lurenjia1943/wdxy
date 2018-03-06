@@ -52,43 +52,5 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/score/update','ScoreController@update');
 	//修改学生分数
 	Route::post('/score/show','ScoreController@show');
-	//学生成绩的查询
-	Route::get('/grade/grade/{id}','GradeController@grade');
-	//添加学生成绩学号验证
-	Route::post('/grade/checkxuehao','GradeController@checkxuehao');
-	//修改学生成绩验证
-	Route::post('/grade/xiugai','GradeController@xiugai');
-	//修改学生成绩查询
-	Route::post('/grade/chaxunsub','GradeController@chaxunsub');
-	//查询历史成绩
-	Route::post('/grade/chaxunquanbu','GradeController@chaxunquanbu');
-	//添加学生成绩科目验证
-	Route::post('/grade/add','GradeController@add');
-	//学生信息删除
-	Route::post('/grade/shanchu','GradeController@shanchu');
-	//科目修改
-	Route::post('/subject/xiugai','SubjectController@xiugai');
-	// 科目添加验证
-	Route::post('/subject/subject','SubjectController@subject');
-	// 添加科目
-	Route::post('/subject/add','SubjectController@add');
-
-	//考勤主页
-	Route::any('/student/qin/{id?}','QinController@index');
-	//考勤详情
-	Route::any('/qin/show','QinController@show');
-	Route::any('/qin/liuinfo','QinController@liuinfo');
-	//考勤添加
-	Route::any('/qin/update','QinController@update');
-	Route::any('/qin/delete','QinController@delete');
-	Route::any('/qin/table','QinController@table');
-
-	//王婉婉学生考勤
-	Route::get('/commuting/index/{id}',['as' => 'kaoqin', 'uses' => 'CommutingController@index']);
-	//执行学生考勤记入页面
-	Route::post('/commuting/store','CommutingController@store');
-	//删除考勤记录
-	Route::get('/commuting/destroy','CommutingController@destroy');
-	
 	
 });

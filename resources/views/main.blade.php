@@ -53,8 +53,7 @@
                             <div class="panel-group" id="version">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#version" href="#v41">v1.1</a><code class="pull-right">2018.2.3</code>
+                                        <h5 class="panel-title">v0.9<code class="pull-right">2017.12.20</code>
                                             </h5>
                                     </div>
                                     <div id="v41" class="panel-collapse collapse in">
@@ -66,27 +65,7 @@
                                                 <li>提供3套不同风格的皮肤</li>
                                                 <li>使用最流行的的扁平化设计</li>
                                                 <li>采用HTML5 & CSS3</li>
-                                                <li>后续功能：将陆续添加超级管理员和学生登陆查看功能、学生的项目成绩录入、学生留言功能、查看学校老师代班安排功能等等，让我们共同期待吧。</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#version" href="#v41">v0.9</a><code class="pull-right">2017.12.20</code>
-                                            </h5>
-                                    </div>
-                                    <div id="v41" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <div class="alert alert-warning">此版本是一个测试版本，主要是测试软件可靠性和服务器的稳定性。</div>
-                                            <ol>
-                                                <li>后台选用了采用最新的laravel5.5版本</li>
-                                                <li>完全响应式布局（支持电脑、平板、手机等所有主流设备）</li>
-                                                <li>提供3套不同风格的皮肤</li>
-                                                <li>使用最流行的的扁平化设计</li>
-                                                <li>采用HTML5 & CSS3</li>
-                                                <li>后续功能：将陆续添加超级管理员和学生登陆查看功能、学生考试成绩录入功能、学生的项目成绩录入、学生考勤功能、学生留言功能、查看学校老师代班安排功能等等，让我们共同期待吧。</li>
+                                                <li>后续功能：将陆续添加超级管理员和学生登陆查看功能、学生考试成绩录入功能、学生的项目成绩录入、学生考勤功能、学生留言功能、查看学校老师代班安排功能、讲师课时统计功能等等，让我们共同期待吧。</li>
                                             </ol>
                                         </div>
                                     </div>
@@ -97,12 +76,12 @@
                 </div>
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>版权所有</h5>
+                        <h5>联系信息</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>作者：<a href="javascript:;">韩志奎 周帅 王婉婉</a>
+                        <p><i class="fa fa-qq"></i> QQ：<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=395696661&amp;site=qq&amp;menu=yes" target="_blank">395696661</a>
                         </p>
-                        <p>指导老师：<a href="javascript:;">陈询</a>
+                        <p><i class="fa fa-phone"></i> 手机：<a href="javascript:;">13653592881</a>
                         </p>
                     </div>
                 </div>

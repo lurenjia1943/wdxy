@@ -10,7 +10,6 @@ use App\Student;
 use App\Classs;
 use App\User;
 use App\Liuji;
-use DB;
 class StudentController extends Controller
 {
 
@@ -89,12 +88,6 @@ class StudentController extends Controller
         $Student->address = $request->province.$request->city.$request->county.$request->s_address;
         $Student->classid = $request->classid;
         $Student->save();
-        //添加学生添加成绩
-        $studentid = $Student->id;
-        $subject = DB::table('test')->where('classid',$request->classid)->orderBy('id','asc')->pluck('id');
-        foreach ($subject as $k => $v) {
-            DB::table('grade')->insert(['studentid'=>$studentid,'subjectid'=>$v,'grade'=>'','state'=>'1']);
-        }
         return redirect()->route('profile', ['classid' => $request->classid]);
     }
 
@@ -130,13 +123,6 @@ class StudentController extends Controller
         $Liuji->reason = $request->reason;
         $Liuji->time = $request->time;
         $Liuji->save();
-        //留级成绩更改
-        DB::table('grade')->where('studentid',$request->id)->update(['state'=>'2']);
-        $subject = DB::table('test')->where('classid',$request->moreclass)->pluck('id');
-        foreach ($subject as $k => $v) {
-            DB::table('grade')->insert(['studentid'=>$request->id,'subjectid'=>$v,'grade'=>'','state'=>'1']);
-        }
-           
         return redirect()->route('profile', ['classid' => $request->classid]);
     }
 
